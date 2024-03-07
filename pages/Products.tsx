@@ -18,7 +18,7 @@ const Products = () => {
   
 
   return (
-    <View>
+    <View style={{paddingLeft: 5, paddingRight: 5, }}>
       <FlatList 
         data={arrProduct}
         renderItem={({item, index}) => 
