@@ -1,10 +1,14 @@
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
 import { Product } from '../models/ProductsModel'
+import { useNavigation } from '@react-navigation/native'
 
 const ProductItem = (props: {item: Product}) => {
+
+  const navigation = useNavigation<any>()
+
   return (
-    <TouchableOpacity>
+    <TouchableOpacity onPress={() => navigation.navigate('Detail', {item: props.item})}>
         <View style={{ marginBottom: 10, justifyContent: 'flex-start', flexDirection: 'row' }}>
             <View>
                 <Image style={styles.image} source={{uri: props.item.thumbnail}} />

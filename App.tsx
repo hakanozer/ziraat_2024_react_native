@@ -12,6 +12,7 @@ import Login from './pages/Login'
 import Register from './pages/Register';
 import Welcome from './pages/Welcome';
 import Products from './pages/Products';
+import ProductDetail from './pages/ProductDetail';
 
 const Stack = createNativeStackNavigator()
 const Tab = createMaterialBottomTabNavigator()
@@ -51,6 +52,7 @@ const LoginStack = () =>
 const ProductStack = () => 
 <Stack.Navigator>
   <Stack.Screen name='Products' component={Products} options={{ headerShown: true }} />
+  <Stack.Screen name='Detail' component={ProductDetail} options={{ headerShown: true }} />
 </Stack.Navigator>
 
 // App Tabs
