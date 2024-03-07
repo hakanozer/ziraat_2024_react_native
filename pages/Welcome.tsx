@@ -12,7 +12,7 @@ const Welcome = () => {
         if (res) {
             console.log(res)
             navigation.dispatch(
-                StackActions.replace('Login', {
+                StackActions.replace('AppTabs', {
                   user: 'jane',
                 })
               )

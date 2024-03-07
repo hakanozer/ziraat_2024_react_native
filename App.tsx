@@ -2,16 +2,19 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View , SafeAreaView, TouchableOpacity} from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { Ionicons } from '@expo/vector-icons';
+import { Ionicons, SimpleLineIcons } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
 import Toast from 'react-native-toast-message';
+import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 
 // Import Pages
 import Login from './pages/Login'
 import Register from './pages/Register';
 import Welcome from './pages/Welcome';
+import Products from './pages/Products';
 
 const Stack = createNativeStackNavigator()
+const Tab = createMaterialBottomTabNavigator()
 
 // Custom Header
 const customRegisterHeader = (navigation: any) =>
@@ -44,11 +47,38 @@ const LoginStack = () =>
    }} />
 </Stack.Navigator>
 
+// Products Stack
+const ProductStack = () => 
+<Stack.Navigator>
+  <Stack.Screen name='Products' component={Products} options={{ headerShown: false }} />
+</Stack.Navigator>
+
+// App Tabs
+const AppTabs = () =>
+<Tab.Navigator
+    initialRouteName="ProductStack"
+    activeColor="#4287f5"
+    inactiveColor="#000000"
+    barStyle={{ backgroundColor: '#d2d4d6',  height: 100 }}   
+  >
+  <Tab.Screen
+    name='ProductStack'
+    component={ProductStack}
+    options={{
+      title: 'Products',
+      tabBarIcon: ({color, size}: any) => 
+        <SimpleLineIcons name='basket' size={25} color={color} />
+    }}
+  />
+</Tab.Navigator>
+
+
 export default function App() {
   return (
      <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen name='LoginStack' component={LoginStack} options={{ headerShown: false }} />
+        <Stack.Screen name='AppTabs' component={AppTabs} options={{ headerShown: false }} />
       </Stack.Navigator>
       <Toast />
     </NavigationContainer>
