@@ -4,11 +4,12 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Ionicons } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
-
+import Toast from 'react-native-toast-message';
 
 // Import Pages
 import Login from './pages/Login'
 import Register from './pages/Register';
+import Welcome from './pages/Welcome';
 
 const Stack = createNativeStackNavigator()
 
@@ -35,6 +36,7 @@ const customRegisterHeader = (navigation: any) =>
 // Login Stack
 const LoginStack = () => 
 <Stack.Navigator>
+  <Stack.Screen name='Welcome' component={Welcome} options={{ headerShown: false }} />
   <Stack.Screen name='Login' component={Login} options={{ headerShown: false }} />
   <Stack.Screen name='Register' component={Register} options={{ 
     headerShown: true,
@@ -48,6 +50,7 @@ export default function App() {
       <Stack.Navigator>
         <Stack.Screen name='LoginStack' component={LoginStack} options={{ headerShown: false }} />
       </Stack.Navigator>
+      <Toast />
     </NavigationContainer>
   );
 }
