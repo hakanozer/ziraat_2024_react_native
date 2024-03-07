@@ -50,7 +50,7 @@ const LoginStack = () =>
 // Products Stack
 const ProductStack = () => 
 <Stack.Navigator>
-  <Stack.Screen name='Products' component={Products} options={{ headerShown: false }} />
+  <Stack.Screen name='Products' component={Products} options={{ headerShown: true }} />
 </Stack.Navigator>
 
 // App Tabs

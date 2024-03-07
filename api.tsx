@@ -1,6 +1,7 @@
 import axios from "axios";
 import { Platform } from "react-native";
 import { UserModel } from "./models/UserModel";
+import { ProductsModel } from "./models/ProductsModel";
 
 const baseUrl = "https://dummyjson.com/"
 const config = axios.create({
@@ -18,4 +19,8 @@ export const userLogin = ( username: string, password: string  ) => {
         password: password
     }
     return config.post<UserModel>('auth/login', sendObj)
+}
+
+export const allProduct = () => {
+    return config.get<ProductsModel>('products')
 }
