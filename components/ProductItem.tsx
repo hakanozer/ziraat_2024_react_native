@@ -3,22 +3,26 @@ import React from 'react'
 import { Product } from '../models/ProductsModel'
 import { useNavigation } from '@react-navigation/native'
 
-const ProductItem = (props: {item: Product}) => {
+const ProductItem = (props: {item?: Product}) => {
 
   const navigation = useNavigation<any>()
 
   return (
-    <TouchableOpacity onPress={() => navigation.navigate('Detail', {item: props.item})}>
-        <View style={{ marginBottom: 10, justifyContent: 'flex-start', flexDirection: 'row' }}>
-            <View>
-                <Image style={styles.image} source={{uri: props.item.thumbnail}} />
+    <>
+    { props.item &&  
+        <TouchableOpacity  onPress={() => navigation.navigate('Detail', {item: props.item})}>
+            <View style={{ marginBottom: 10, justifyContent: 'flex-start', flexDirection: 'row' }}>
+                <View>
+                    <Image style={styles.image} source={{uri: props.item.thumbnail}} />
+                </View>
+                <View style={{marginLeft: 10,}}>
+                    <Text style={styles.title}>{props.item.title}</Text>
+                    <Text style={styles.price}>{props.item.price}₺</Text>
+                </View>
             </View>
-            <View style={{marginLeft: 10,}}>
-                <Text style={styles.title}>{props.item.title}</Text>
-                <Text style={styles.price}>{props.item.price}₺</Text>
-            </View>
-        </View>
-    </TouchableOpacity>
+        </TouchableOpacity>
+    }
+    </>
   )
 }
 

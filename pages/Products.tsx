@@ -13,6 +13,11 @@ const Products = () => {
         const dt = res.data
         const arr = dt.products
         setArrProduct(arr)
+        setTimeout(() => {
+            const item = Object.assign({},  arr[0] )  
+            item.id = 40
+            setArrProduct( [...arr, item] )
+        }, 5000);
     })
   }, [])
   
@@ -22,7 +27,7 @@ const Products = () => {
       <FlatList 
         data={arrProduct}
         renderItem={({item, index}) => 
-            <ProductItem item={item} />
+            <ProductItem key={index} item={item} />
         }
       />
     </View>
