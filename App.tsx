@@ -6,6 +6,8 @@ import { Ionicons, SimpleLineIcons } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
 import Toast from 'react-native-toast-message';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
+import { Provider } from 'react-redux';
+import { store } from './useRedux/store';
 
 // Import Pages
 import Login from './pages/Login'
@@ -13,6 +15,8 @@ import Register from './pages/Register';
 import Welcome from './pages/Welcome';
 import Products from './pages/Products';
 import ProductDetail from './pages/ProductDetail';
+import Likes from './pages/Likes';
+
 
 const Stack = createNativeStackNavigator()
 const Tab = createMaterialBottomTabNavigator()
@@ -55,6 +59,12 @@ const ProductStack = () =>
   <Stack.Screen name='Detail' component={ProductDetail} options={{ headerShown: true }} />
 </Stack.Navigator>
 
+// Likes Stack
+const LikesStack = () => 
+<Stack.Navigator>
+  <Stack.Screen name='Likes' component={Likes} options={{ headerShown: true }} />
+</Stack.Navigator>
+
 // App Tabs
 const AppTabs = () =>
 <Tab.Navigator
@@ -72,18 +82,29 @@ const AppTabs = () =>
         <SimpleLineIcons name='basket' size={25} color={color} />
     }}
   />
+  <Tab.Screen
+    name='LikesStack'
+    component={LikesStack}
+    options={{
+      title: 'Likes',
+      tabBarIcon: ({color, size}: any) => 
+        <SimpleLineIcons name='heart' size={25} color={color} />
+    }}
+  />
 </Tab.Navigator>
 
 
 export default function App() {
   return (
-     <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name='LoginStack' component={LoginStack} options={{ headerShown: false }} />
-        <Stack.Screen name='AppTabs' component={AppTabs} options={{ headerShown: false }} />
-      </Stack.Navigator>
-      <Toast />
-    </NavigationContainer>
+    <Provider store={store}>
+      <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen name='LoginStack' component={LoginStack} options={{ headerShown: false }} />
+          <Stack.Screen name='AppTabs' component={AppTabs} options={{ headerShown: false }} />
+        </Stack.Navigator>
+        <Toast />
+      </NavigationContainer>
+    </Provider>
   );
 }
 

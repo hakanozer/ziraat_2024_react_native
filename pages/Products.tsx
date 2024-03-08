@@ -9,6 +9,7 @@ const Products = () => {
    const [arrProduct, setArrProduct] = useState<Product[]>([]) 
 
   useEffect(() => {
+    console.log("Products Call")
     allProduct().then((res) => {
         const dt = res.data
         const arr = dt.products
